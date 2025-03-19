@@ -7,3 +7,4 @@ cifar_train_test/
 dataloaders/
 .tmp.drivedownload
 .ipynb_checkpoints
+.vscode

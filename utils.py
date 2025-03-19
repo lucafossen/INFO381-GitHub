@@ -5,7 +5,7 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 from torchvision import transforms
 
-def get_dataloaders(zip_path="cifar_train_test.zip", batch_size=32, transform=None, split="both"):
+def get_dataloaders(zip_path="cifar_train_test.zip", local_exctract_dir="../", batch_size=32, transform=None, split="both"):
     """
     Gets CIFAKE train/test DataLoaders.
     If running on Google Colab, the zip file is always extracted into a non-synced folder.
@@ -19,6 +19,7 @@ def get_dataloaders(zip_path="cifar_train_test.zip", batch_size=32, transform=No
     :param split: 'train', 'test', or 'both' to return the corresponding DataLoader(s).
     :return: (train_loader, test_loader)
     """
+    folder_name = "cifar_train_test/"
     try:
         import google.colab
         IN_COLAB = True
@@ -28,14 +29,14 @@ def get_dataloaders(zip_path="cifar_train_test.zip", batch_size=32, transform=No
         print("Not running in Google Colab")
 
     if IN_COLAB:
-        extract_dir = "/content/cifar_train_test/"
+        extract_dir = "/content/"+folder_name
         # Create the directory if it doesn't exist
         os.makedirs(extract_dir, exist_ok=True)
         # Always extract in Colab
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             zip_ref.extractall(extract_dir)
     else:
-        extract_dir = "cifar_train_test/"
+        extract_dir = local_exctract_dir+folder_name
         # If the folder already exists, skip extraction
         if not os.path.exists(extract_dir):
             print(f"Folder '{extract_dir}' does not exist. Extracting from {zip_path} ...")

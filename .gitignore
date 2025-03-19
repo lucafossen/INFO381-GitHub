@@ -5,3 +5,5 @@ __pycache__/
 cifar_train_test.zip
 cifar_train_test/
 dataloaders/
+.tmp.drivedownload
+.ipynb_checkpoints

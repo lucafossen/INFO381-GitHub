@@ -1,7 +1,6 @@
 *.jpg
 .DS_Store
 __pycache__/
-models/
 .tmp.driveupload/
 cifar_train_test.zip
 cifar_train_test/

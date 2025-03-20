@@ -44,7 +44,7 @@ def get_dataloaders(zip_path="cifar_train_test.zip", local_exctract_dir="../", b
             with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                 zip_ref.extractall(extract_dir)
         else:
-            print(f"Folder '{extract_dir}' already exists.")
+            print(f"Folder '{extract_dir}' exists. Loading...")
 
     # Default transform if none is provided
     if transform is None:

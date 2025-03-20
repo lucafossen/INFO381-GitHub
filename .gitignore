@@ -8,3 +8,4 @@ dataloaders/
 .tmp.drivedownload
 .ipynb_checkpoints
 .vscode
+models/clip_vit_classifier.pth

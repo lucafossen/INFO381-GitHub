@@ -5,7 +5,7 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 from torchvision import transforms
 
-def get_dataloaders(zip_path="cifar_train_test.zip", local_exctract_dir="../", batch_size=32, transform=None, split="both"):
+def get_dataloaders(zip_path="fake_vs_real.zip", local_exctract_dir="../", batch_size=32, transform=None, split="both"):
     """
     Gets train/test DataLoaders (assuming a folder structure similar to the CIFAKE dataset).
     If running on Google Colab, the zip file is always extracted into a non-synced folder.

@@ -7,7 +7,7 @@ from torchvision import transforms
 
 def get_dataloaders(zip_path="cifar_train_test.zip", local_exctract_dir="../", batch_size=32, transform=None, split="both"):
     """
-    Gets CIFAKE train/test DataLoaders.
+    Gets train/test DataLoaders (assuming a folder structure similar to the CIFAKE dataset).
     If running on Google Colab, the zip file is always extracted into a non-synced folder.
     If running locally, the zip file is extracted only if the folder doesn't already exist.
 
@@ -19,7 +19,7 @@ def get_dataloaders(zip_path="cifar_train_test.zip", local_exctract_dir="../", b
     :param split: 'train', 'test', or 'both' to return the corresponding DataLoader(s).
     :return: (train_loader, test_loader)
     """
-    folder_name = "cifar_train_test/"
+    folder_name = zip_path.split(".")[0]+"/"
     try:
         import google.colab
         IN_COLAB = True

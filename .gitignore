@@ -1,8 +1,8 @@
 *.jpg
+*.zip
 .DS_Store
 __pycache__/
 .tmp.driveupload/
-cifar_train_test.zip
 cifar_train_test/
 dataloaders/
 .tmp.drivedownload

@@ -9,3 +9,4 @@ dataloaders/
 .ipynb_checkpoints
 .vscode
 models/clip_vit_classifier.pth
+models/clip_classifier_10epochs.pth

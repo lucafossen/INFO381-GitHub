@@ -7,84 +7,100 @@ from PIL import Image, ImageTk
 BASE_DIR = "gui_images"
 METHODS = ["RISE", "LIME", "GRADCAM"]
 LABELS = ["real", "ai_generated"]
-IMAGE_RANGE = [str(i) for i in range(1, 11)]
-IMAGE_DISPLAY_SIZE = (600, 600)  # Big image size
+IMAGE_IDS = [str(i) for i in range(1, 11)]
+IMG_SIZE = (750, 250)
 
-def load_image(path, size=IMAGE_DISPLAY_SIZE):
+# === Image loader ===
+def load_image(path, size=IMG_SIZE):
     try:
-        img = Image.open(path).resize(size)
+        img = Image.open(path).resize(size, Image.ANTIALIAS)
         return ImageTk.PhotoImage(img)
-    except:
+    except Exception as e:
+        print(f"Error loading {path}: {e}")
         return None
 
-# === Main GUI Class ===
-class XAIViewer:
+# === GUI class ===
+class XAIViewerStacked:
     def __init__(self, root):
         self.root = root
         self.root.title("XAI Visualization Viewer")
-        self.root.state('zoomed')  # Fullscreen mode (for Windows/macOS)
-        self.root.configure(background="white")
+        self.root.state('zoomed')
+        self.root.configure(bg="white")
 
-        # === Dropdown row ===
-        top_frame = tk.Frame(root, bg="white")
-        top_frame.pack(pady=10)
+        # === Main layout ===
+        main_frame = tk.Frame(self.root, bg="white")
+        main_frame.pack(fill=tk.BOTH, expand=True, anchor='n')
 
-        ttk.Label(top_frame, text="Choose class:").grid(row=0, column=0, padx=10)
+        # === Top selection menu ===
+        top_frame = tk.Frame(main_frame, bg="white")
+        top_frame.pack(pady=2, anchor='n')  # ↓ Reduced padding here
+
+        ttk.Label(top_frame, text="Choose class:", font=("Arial", 12, "bold")).grid(row=0, column=0, padx=10)
         self.label_var = tk.StringVar(value="real")
-        self.label_dropdown = ttk.Combobox(top_frame, textvariable=self.label_var, values=LABELS, state="readonly", width=15)
-        self.label_dropdown.grid(row=0, column=1, padx=10)
+        class_dropdown = ttk.Combobox(top_frame, textvariable=self.label_var, values=LABELS, state="readonly", width=15)
+        class_dropdown.grid(row=0, column=1)
+        self.label_var.trace_add("write", lambda *args: self.load_visualizations())
 
-        ttk.Label(top_frame, text="Choose image (1–10):").grid(row=0, column=2, padx=10)
+        ttk.Label(top_frame, text="Choose image (1–10):", font=("Arial", 12, "bold")).grid(row=0, column=2, padx=10)
         self.image_var = tk.StringVar(value="1")
-        self.image_dropdown = ttk.Combobox(top_frame, textvariable=self.image_var, values=IMAGE_RANGE, state="readonly", width=10)
-        self.image_dropdown.grid(row=0, column=3, padx=10)
+        image_dropdown = ttk.Combobox(top_frame, textvariable=self.image_var, values=IMAGE_IDS, state="readonly", width=15)
+        image_dropdown.grid(row=0, column=3)
+        self.image_var.trace_add("write", lambda *args: self.load_visualizations())
 
-        ttk.Button(top_frame, text="Load Explanations", command=self.load_visualizations).grid(row=0, column=4, padx=20)
+        # === Content layout ===
+        content_frame = tk.Frame(main_frame, bg="white")
+        content_frame.pack(fill=tk.BOTH, expand=True, pady=0)
 
-        # === Image frames ===
-        self.image_frame = tk.Frame(root, bg="white")
-        self.image_frame.pack(pady=15)
+        # === Left and Right Panels for text ===
+        self.left_text = tk.Text(content_frame, width=30, height=40, wrap="word", font=("Arial", 10))
+        self.left_text.insert(tk.END, "Color Interpretation:\n\n- Red: High relevance\n- Yellow: Medium relevance\n- Blue: Low relevance\n- Transparent: No effect")
+        self.left_text.config(state="disabled")
+        self.left_text.pack(side=tk.LEFT, padx=10, pady=5, fill=tk.Y)
+
+        self.right_text = tk.Text(content_frame, width=40, height=40, wrap="word", font=("Arial", 10))
+        self.right_text.insert(tk.END, "Model Predictions will appear here.")
+        self.right_text.config(state="disabled")
+        self.right_text.pack(side=tk.RIGHT, padx=10, pady=5, fill=tk.Y)
+
+        # === Image Display Area ===
+        self.center_frame = tk.Frame(content_frame, bg="white")
+        self.center_frame.pack(side=tk.LEFT, expand=True, pady=5, anchor='n')
 
         self.image_panels = []
-        self.pred_labels = []
+        self.label_panels = []
 
-        for i in range(3):
-            subframe = tk.Frame(self.image_frame, bg="white")
-            canvas = tk.Label(subframe, bg="white")
-            canvas.pack()
-            label = tk.Label(subframe, text="", font=("Helvetica", 14), bg="white")
-            label.pack(pady=5)
-            subframe.grid(row=0, column=i, padx=15)
-            self.image_panels.append(canvas)
-            self.pred_labels.append(label)
+        for method in ["Original"] + METHODS:
+            frame = tk.Frame(self.center_frame, bg="white")
+            text_label = tk.Label(frame, text="", font=("Arial", 16, "bold"), bg="white")
+            text_label.pack(pady=1)
+            img_label = tk.Label(frame, bg="white")
+            img_label.pack()
+            frame.pack(pady=5)
+
+            self.label_panels.append(text_label)
+            self.image_panels.append(img_label)
+
+
 
     def load_visualizations(self):
         label = self.label_var.get()
         img_id = self.image_var.get()
+        filename = f"img{img_id}.png"
 
-        titles = ["Original Image", "CNN + RISE", "CLIP + RISE"]
-        # Original image (copied from CNN RISE input)
-        original_path = os.path.join(BASE_DIR, "RISE", label, f"img{img_id}.png")
-        original_img = load_image(original_path)
-
-        for i, method in enumerate(METHODS):
-            path = os.path.join(BASE_DIR, method, label, f"img{img_id}.png")
-
-            if i == 0:  # Original image left
-                img = original_img
-            else:
-                img = load_image(path)
-
+        # Load other methods
+        for i, method in enumerate(METHODS, start=1):
+            path = os.path.join(BASE_DIR, method, label, filename)
+            img = load_image(path)
             if img:
+                self.label_panels[i].configure(text=f"{method} Explanation")
                 self.image_panels[i].configure(image=img)
                 self.image_panels[i].image = img
-                self.pred_labels[i].configure(text=f"{titles[i]} (img{img_id})")
             else:
                 self.image_panels[i].configure(image="")
-                self.pred_labels[i].configure(text=f"{titles[i]} not found")
+                self.label_panels[i].configure(text=f"{method} not found for img{img_id}")
 
-# === Launch the app ===
+# === Run ===
 if __name__ == "__main__":
     root = tk.Tk()
-    app = XAIViewer(root)
+    app = XAIViewerStacked(root)
     root.mainloop()

@@ -91,16 +91,16 @@ Descriptions for each image:
 """
 
 cherry_pick_img_real = {
-    "1": "/content/fake_vs_real/test/real/207.jpg",
-    "2": "/content/fake_vs_real/test/real/212.jpg",
-    "3": "/content/fake_vs_real/test/real/388.jpg",
-    "4": "/content/fake_vs_real/test/real/467.jpg",
-    "5": "/content/fake_vs_real/test/real/653.jpg",
-    "6": "/content/fake_vs_real/test/real/1034.jpg",
-    "7": "/content/fake_vs_real/test/real/1042.jpg",
-    "8": "/content/fake_vs_real/test/real/2028.jpg",
-    "9": "/content/fake_vs_real/test/real/2681.jpg",
-    "10": "/content/fake_vs_real/test/real/eo40kdp8ot5a1.jpg"
+    1: "/content/fake_vs_real/test/real/207.jpg",
+    2: "/content/fake_vs_real/test/real/212.jpg",
+    3: "/content/fake_vs_real/test/real/388.jpg",
+    4: "/content/fake_vs_real/test/real/467.jpg",
+    5: "/content/fake_vs_real/test/real/653.jpg",
+    6: "/content/fake_vs_real/test/real/1034.jpg",
+    7: "/content/fake_vs_real/test/real/1042.jpg",
+    8: "/content/fake_vs_real/test/real/2028.jpg",
+    9: "/content/fake_vs_real/test/real/2681.jpg",
+    10: "/content/fake_vs_real/test/real/eo40kdp8ot5a1.jpg"
 }
 
 
@@ -120,14 +120,14 @@ Descriptions for each image:
 """
 
 cherry_pick_img_ai_generated = {
-    "1": "/content/fake_vs_real/test/fake/10098.jpg",
-    "2": "/content/fake_vs_real/test/fake/3158.jpg",
-    "3": "/content/fake_vs_real/test/fake/11729.jpg",
-    "4": "/content/fake_vs_real/test/fake/22314.png",
-    "5": "/content/fake_vs_real/test/fake/12395.jpg",
-    "7": "/content/fake_vs_real/test/fake/22417.png",
-    "8": "/content/fake_vs_real/test/fake/23674.png",
-    "9": "/content/fake_vs_real/test/fake/25755.png",
-    "10": "/content/fake_vs_real/test/fake/12073.jpg"
+    1: "/content/fake_vs_real/test/fake/10098.jpg",
+    2: "/content/fake_vs_real/test/fake/3158.jpg",
+    3: "/content/fake_vs_real/test/fake/11729.jpg",
+    4: "/content/fake_vs_real/test/fake/22314.png",
+    5: "/content/fake_vs_real/test/fake/12395.jpg",
+    7: "/content/fake_vs_real/test/fake/22417.png",
+    8: "/content/fake_vs_real/test/fake/23674.png",
+    9: "/content/fake_vs_real/test/fake/25755.png",
+    10: "/content/fake_vs_real/test/fake/12073.jpg"
 }
 

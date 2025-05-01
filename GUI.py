@@ -11,9 +11,9 @@ IMAGE_IDS = [str(i) for i in range(1, 11)]
 IMG_SIZE = (750, 750)
 METHOD_SIZES = {
     
-    "RISE": (550, 160),
-    "LIME": (550, 160),
-    "GRADCAM": (380, 160),
+    "RISE": (570, 170),
+    "LIME": (570, 170),
+    "GRADCAM": (400, 170),
 }
 
 # Image loader
@@ -58,13 +58,40 @@ class XAIViewerStacked:
         content_frame.pack(fill=tk.BOTH, expand=True, pady=0)
 
         # === Left and Right Panels for text ===
-        self.left_text = tk.Text(content_frame, width=30, height=40, wrap="word", font=("Arial", 10))
-        self.left_text.insert(tk.END, "Color Interpretation:\n\n- Red: High relevance\n- Yellow: Medium relevance\n- Blue: Low relevance\n- Transparent: No effect")
+        self.left_text = tk.Text(content_frame, width=30, height=40, wrap="word", font=("Arial", 15))
+        self.left_text.insert(tk.END, """Color Interpretation:
+
+
+RISE:
+
+- RED: HIGH relevance
+
+- GREEN/YELLOW: MEDIUM relevance
+
+- BLUE: LOW relevance
+
+
+LIME:
+
+- GREEN: POSITIVE relevance
+
+- RED: NEGATIVE relevance
+
+
+GRAD-CAM:
+
+- RED: HIGH relevance
+
+- GREEN/YELLOW: MEDIUM relevance
+
+- BLUE: LOW relevance
+
+    """)
         self.left_text.config(state="disabled")
         self.left_text.pack(side=tk.LEFT, padx=10, pady=5, fill=tk.Y)
 
-        self.right_text = tk.Text(content_frame, width=40, height=40, wrap="word", font=("Arial", 10))
-        self.right_text.insert(tk.END, "Model Predictions will appear here.")
+        self.right_text = tk.Text(content_frame, width=40, height=40, wrap="word", font=("Arial", 15))
+        self.right_text.insert(tk.END, "Choose from the drop down menu 'Choose class:', if you want to look at a real or AI generated image.\n\nChoose from the drop down menu 'Choose image (1-10):', what image to look at.\n\nNOTE:\nThe real folder only contains images that is actually real\nThe ai_generated folder only contains images that is actually AI generated\n\n\n\nModel Predictions are shown above each image.\n\n\n\nREAL = The model predicted it to be real\n\nAI GENERATED = The model predicted it to be AI generated")
         self.right_text.config(state="disabled")
         self.right_text.pack(side=tk.RIGHT, padx=10, pady=5, fill=tk.Y)
 
@@ -77,14 +104,22 @@ class XAIViewerStacked:
 
         for method in ["Original"] + METHODS:
             frame = tk.Frame(self.center_frame, bg="white")
-            text_label = tk.Label(frame, text="", font=("Arial", 16, "bold"), bg="white")
-            text_label.pack(pady=1)
+
+            if method != "Original":
+                text_label = tk.Label(frame, text="", font=("Arial", 16, "bold"), bg="white")
+                text_label.pack(pady=1)
+            else:
+                text_label = None  # No header for Original
+
             img_label = tk.Label(frame, bg="white")
             img_label.pack()
+
             frame.pack(pady=5)
 
             self.label_panels.append(text_label)
             self.image_panels.append(img_label)
+
+        self.load_visualizations()
 
 
 
@@ -99,12 +134,14 @@ class XAIViewerStacked:
             size = METHOD_SIZES.get(method, IMG_SIZE)
             img = load_image(path, size=size)
             if img:
-                self.label_panels[i].configure(text=f"{method} Explanation" if method != "Original" else "Original Image")
+                if self.label_panels[i]:
+                    self.label_panels[i].configure(text=f"{method} Explanation")
                 self.image_panels[i].configure(image=img)
                 self.image_panels[i].image = img
             else:
                 self.image_panels[i].configure(image="")
-                self.label_panels[i].configure(text=f"{method} not found for img{img_id}")
+                if self.label_panels[i]:
+                    self.label_panels[i].configure(text=f"{method} not found for img{img_id}")
 
 
 # === Run ===

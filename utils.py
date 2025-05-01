@@ -113,6 +113,7 @@ Descriptions for each image:
 - "3": Girl with skateboard
 - "4": Lady with bear on hike
 - "5": DALLE watermark, girl with phones and phone head
+- "6": Girl with alien
 - "7": Will Smith with gun – seems real but has weird buttons/shadows
 - "8": Fake wolf
 - "9": DALLE watermark, Gender reveal nuclear bomb
@@ -125,6 +126,7 @@ cherry_pick_img_ai_generated = {
     3: "/content/fake_vs_real/test/fake/11729.jpg",
     4: "/content/fake_vs_real/test/fake/22314.png",
     5: "/content/fake_vs_real/test/fake/12395.jpg",
+    6: "/content/fake_vs_real/test/fake/3017.jpg",
     7: "/content/fake_vs_real/test/fake/22417.png",
     8: "/content/fake_vs_real/test/fake/23674.png",
     9: "/content/fake_vs_real/test/fake/25755.png",

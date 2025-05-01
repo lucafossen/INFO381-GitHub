@@ -78,7 +78,7 @@ def get_dataloaders(zip_path="fake_vs_real.zip", local_exctract_dir="../", batch
 Cherry-picked real images for explanation and evaluation.
 
 Descriptions for each image:
-- "1": man with camera - image has black crop
+- "1": Human-made amateur digital art, both models misclassify
 - "2": car parked in southern Europe
 - "3": man smiling to camera
 - "4": dog laying on grass
@@ -87,13 +87,11 @@ Descriptions for each image:
 - "7": desert with blue sky
 - "8": model in black and white
 - "9": man staring into the camera
-- "10": painting of man with big ear, both models misclassify
-- "11": Hand-made mandala, both models misclassify
-- "12": Human-made amateur digital art, both models misclassify
+- "10": Hand-made mandala, both models misclassify
 """
 
 cherry_pick_img_real = {
-    1: "/content/fake_vs_real/test/real/207.jpg",
+    1: "/content/fake_vs_real/test/real/gx9z9i2s5l5a1.jpg",
     2: "/content/fake_vs_real/test/real/212.jpg",
     3: "/content/fake_vs_real/test/real/388.jpg",
     4: "/content/fake_vs_real/test/real/467.jpg",
@@ -102,9 +100,7 @@ cherry_pick_img_real = {
     7: "/content/fake_vs_real/test/real/1042.jpg",
     8: "/content/fake_vs_real/test/real/2028.jpg",
     9: "/content/fake_vs_real/test/real/2681.jpg",
-    10: "/content/fake_vs_real/test/real/eo40kdp8ot5a1.jpg",
-    11: "/content/fake_vs_real/test/real/k8354ae1dy5a1.jpg",
-    11: "/content/fake_vs_real/test/real/gx9z9i2s5l5a1.jpg",
+    10: "/content/fake_vs_real/test/real/k8354ae1dy5a1.jpg",
 }
 
 
@@ -115,29 +111,25 @@ Descriptions for each image:
 - "1": Bull Terrier on man
 - "2": Statue of man's face. CNN misclassifies as real
 - "3": Girl with skateboard
-- "4": Lady with bear on hike
+- "4": DALLE watermark, but CLIP again misclassifies it as real
 - "5": DALLE watermark, girl with phones and phone head
 - "6": Girl with alien
 - "7": Will Smith with gun – seems real but has weird buttons/shadows
 - "8": Fake wolf
 - "9": DALLE watermark, Gender reveal nuclear bomb
-- "10": DALLE watermark, Painting of a king with a burger in his hands
-- "12": DALLE watermark, but CLIP misclassifies it as real
-- "12": DALLE watermark, but CLIP again misclassifies it as real
+- "10": DALLE watermark, but CLIP misclassifies it as real
 """
 
 cherry_pick_img_ai_generated = {
     1: "/content/fake_vs_real/test/fake/10098.jpg",
     2: "/content/fake_vs_real/test/fake/3158.jpg",
     3: "/content/fake_vs_real/test/fake/11729.jpg",
-    4: "/content/fake_vs_real/test/fake/22314.png",
+    4: "/content/fake_vs_real/test/fake/25554.png",
     5: "/content/fake_vs_real/test/fake/12395.jpg",
     6: "/content/fake_vs_real/test/fake/3017.jpg",
     7: "/content/fake_vs_real/test/fake/22417.png",
     8: "/content/fake_vs_real/test/fake/23674.png",
     9: "/content/fake_vs_real/test/fake/25755.png",
-    10: "/content/fake_vs_real/test/fake/12073.jpg",
-    11: "/content/fake_vs_real/test/fake/23622.png",
-    13: "/content/fake_vs_real/test/fake/25554.png",
+    10: "/content/fake_vs_real/test/fake/23622.png",
 }
 

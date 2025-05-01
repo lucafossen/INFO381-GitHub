@@ -10,10 +10,10 @@ LABELS = ["real", "ai_generated"]
 IMAGE_IDS = [str(i) for i in range(1, 11)]
 IMG_SIZE = (750, 750)
 METHOD_SIZES = {
-    "Original": (250, 250),
-    "RISE": (650, 220),
-    "LIME": (750, 750),
-    "GRADCAM": (400, 200),
+    
+    "RISE": (550, 160),
+    "LIME": (550, 160),
+    "GRADCAM": (380, 160),
 }
 
 # Image loader

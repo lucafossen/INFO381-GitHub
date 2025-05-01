@@ -8,9 +8,15 @@ BASE_DIR = "gui_images"
 METHODS = ["RISE", "LIME", "GRADCAM"]
 LABELS = ["real", "ai_generated"]
 IMAGE_IDS = [str(i) for i in range(1, 11)]
-IMG_SIZE = (750, 250)
+IMG_SIZE = (750, 750)
+METHOD_SIZES = {
+    "Original": (250, 250),
+    "RISE": (650, 220),
+    "LIME": (750, 750),
+    "GRADCAM": (400, 200),
+}
 
-# === Image loader ===
+# Image loader
 def load_image(path, size=IMG_SIZE):
     try:
         img = Image.open(path).resize(size, Image.ANTIALIAS)
@@ -19,7 +25,7 @@ def load_image(path, size=IMG_SIZE):
         print(f"Error loading {path}: {e}")
         return None
 
-# === GUI class ===
+# GUI class
 class XAIViewerStacked:
     def __init__(self, root):
         self.root = root
@@ -88,16 +94,18 @@ class XAIViewerStacked:
         filename = f"img{img_id}.png"
 
         # Load other methods
-        for i, method in enumerate(METHODS, start=1):
+        for i, method in enumerate(["Original"] + METHODS):
             path = os.path.join(BASE_DIR, method, label, filename)
-            img = load_image(path)
+            size = METHOD_SIZES.get(method, IMG_SIZE)
+            img = load_image(path, size=size)
             if img:
-                self.label_panels[i].configure(text=f"{method} Explanation")
+                self.label_panels[i].configure(text=f"{method} Explanation" if method != "Original" else "Original Image")
                 self.image_panels[i].configure(image=img)
                 self.image_panels[i].image = img
             else:
                 self.image_panels[i].configure(image="")
                 self.label_panels[i].configure(text=f"{method} not found for img{img_id}")
+
 
 # === Run ===
 if __name__ == "__main__":

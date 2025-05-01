@@ -19,7 +19,7 @@ METHOD_SIZES = {
 # Image loader
 def load_image(path, size=IMG_SIZE):
     try:
-        img = Image.open(path).resize(size, Image.ANTIALIAS)
+        img = Image.open(path).resize(size, Image.Resampling.LANCZOS)
         return ImageTk.PhotoImage(img)
     except Exception as e:
         print(f"Error loading {path}: {e}")

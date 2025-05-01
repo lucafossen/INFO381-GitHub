@@ -91,7 +91,7 @@ GRAD-CAM:
         self.left_text.pack(side=tk.LEFT, padx=10, pady=5, fill=tk.Y)
 
         self.right_text = tk.Text(content_frame, width=40, height=40, wrap="word", font=("Arial", 15))
-        self.right_text.insert(tk.END, "\n\nModel Predictions are in the header of each image.\n\n\n\nREAL = The model predicted it to be real\n\nAI GENERATED = The model predicted it to be AI generated")
+        self.right_text.insert(tk.END, "Choose from the drop down menu 'Choose class:', if you want to look at a real or AI generated image.\n\nChoose from the drop down menu 'Choose image (1-10):', what image to look at.\n\nNOTE:\nThe real folder only contains images that is actually real\nThe ai_generated folder only contains images that is actually AI generated\n\n\n\nModel Predictions are shown above each image.\n\n\n\nREAL = The model predicted it to be real\n\nAI GENERATED = The model predicted it to be AI generated")
         self.right_text.config(state="disabled")
         self.right_text.pack(side=tk.RIGHT, padx=10, pady=5, fill=tk.Y)
 

@@ -130,6 +130,7 @@ cherry_pick_img_ai_generated = {
     7: "/content/fake_vs_real/test/fake/22417.png",
     8: "/content/fake_vs_real/test/fake/23674.png",
     9: "/content/fake_vs_real/test/fake/25755.png",
-    10: "/content/fake_vs_real/test/fake/12073.jpg"
+    10: "/content/fake_vs_real/test/fake/12073.jpg",
+    11: "/content/fake_vs_real/test/fake/23622.png",
 }
 

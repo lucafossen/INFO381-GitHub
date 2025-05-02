@@ -73,9 +73,9 @@ RISE:
 
 LIME:
 
-- GREEN: POSITIVE relevance
+- GREEN: POSITIVE influence
 
-- RED: NEGATIVE relevance
+- RED: NEGATIVE influence
 
 
 GRAD-CAM:

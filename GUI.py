@@ -13,7 +13,7 @@ METHOD_SIZES = {
     
     "RISE": (570, 170),
     "LIME": (570, 170),
-    "GRADCAM": (400, 170),
+    "GRADCAM": (570, 170),
 }
 
 # Image loader

@@ -117,7 +117,7 @@ Descriptions for each image:
 - "7": Will Smith with gun – seems real but has weird buttons/shadows
 - "8": Fake wolf
 - "9": DALLE watermark, Gender reveal nuclear bomb
-- "10": DALLE watermark, but CLIP misclassifies it as real
+- "10": Drawing of man
 """
 
 cherry_pick_img_ai_generated = {

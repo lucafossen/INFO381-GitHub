@@ -2,10 +2,12 @@
 
 This repository contains code and notebooks developed for a semester project on Explainable AI (XAI).
 
+**To look at examples of our results, run GUI.py**
+
 <br><br>
 
 
-## Imortant information - Project Structure and Execution
+## Project Structure and Execution
 
 
 The code is designed to be run from the top-level folder `INFO381-GITHUB` when executing locally.
@@ -38,5 +40,50 @@ All notebooks work both locally and in Colab, except for `grad-cam.ipynb`, which
 
 To run code with CLIP, either have git install or run on Google Colab
 
+<br><br>
 
+### Folder structure
+INFO381-GITHUB/ 
+<br><br>
 
+├── gui_images/ # Images used in the GUI 
+<br><br>
+
+├── helper_functions/ # Custom helper modules 
+
+│ ├── model_definitions.py # CLIP model architecture definition
+
+│ └── utils.py # Utility functions 
+
+<br><br>
+├── models/ # Trained models and checkpoints 
+
+│ ├── clip_classifier_10epochs.pth # Trained CLIP model
+
+│ ├── resnet18_cnn.pth # Trained CNN model
+
+│ ├── performance_evaluation.ipynb # Notebook for model evaluation 
+
+│ ├── train_CLIP.ipynb # Notebook to train CLIP model
+
+| └── train_CNN_resnet18.ipynb # Notebook to train CNN model 
+
+<br><br>
+
+├── XAI methods/ # Explainable AI method notebooks 
+
+│ ├── grad-cam.ipynb # XAI - Grad-CAM notebook
+
+│ ├── LIME_xai.ipynb # XAI - LIME notebook
+
+│ └── RISE_xai.ipynb # XAI - RISE notebook
+
+<br><br>
+
+├── GUI.py # GUI interface 
+<br><br>
+
+├── fake_vs_real.zip # Sample dataset (zipped) 
+<br><br>
+
+└── README.md```

@@ -4,9 +4,6 @@ This repository contains code and notebooks developed for a semester project on 
 
 **To look at examples of our results, run GUI.py**
 
-<br><br>
-
-
 ## Project Structure and Execution
 
 
@@ -34,56 +31,33 @@ All notebooks work both locally and in Colab, except for `grad-cam.ipynb`, which
 2. We suggest to unzip `fake_vs_real.zip` manually. The python file `utils.py` will do it for you, but it takes some time.
 3. Run as normal 
 
-<br><br>
 
 ### **IMPORTANT TO NOTE:**
 
-To run code with CLIP, either have git install or run on Google Colab
-
-<br><br>
+To use CLIP locally, you need to have an installation of Git or install CLIP manually from https://github.com/openai/CLIP
 
 ### Folder structure
+
+```
 INFO381-GITHUB/ 
-<br><br>
-
 ├── gui_images/ # Images used in the GUI 
-<br><br>
-
 ├── helper_functions/ # Custom helper modules 
-
 │ ├── model_definitions.py # CLIP model architecture definition
-
 │ └── utils.py # Utility functions 
-
-<br><br>
+│
 ├── models/ # Trained models and checkpoints 
-
 │ ├── clip_classifier_10epochs.pth # Trained CLIP model
-
 │ ├── resnet18_cnn.pth # Trained CNN model
-
-│ ├── performance_evaluation.ipynb # Notebook for model evaluation 
-
+│ ├── performance_evaluation.ipynb # Notebook for model evaluation
 │ ├── train_CLIP.ipynb # Notebook to train CLIP model
-
-| └── train_CNN_resnet18.ipynb # Notebook to train CNN model 
-
-<br><br>
-
+│ └── train_CNN_resnet18.ipynb # Notebook to train CNN model 
+│
 ├── XAI methods/ # Explainable AI method notebooks 
-
 │ ├── grad-cam.ipynb # XAI - Grad-CAM notebook
-
 │ ├── LIME_xai.ipynb # XAI - LIME notebook
-
 │ └── RISE_xai.ipynb # XAI - RISE notebook
-
-<br><br>
-
+│
 ├── GUI.py # GUI interface 
-<br><br>
-
 ├── fake_vs_real.zip # Sample dataset (zipped) 
-<br><br>
-
-└── README.md```
+└── README.md
+```
